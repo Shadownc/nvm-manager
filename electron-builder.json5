@@ -12,10 +12,10 @@
     "dist"
   ],
   "mac": {
-    "artifactName": "${productName}_${version}_mac_${arch}.${ext}",
+    "artifactName": "${productName}-${version}-mac-${arch}.${ext}",
     "target": [
       "dmg",
-      "zip"  // 便携版
+      "zip"
     ]
   },
   "win": {
@@ -27,24 +27,24 @@
         ]
       },
       {
-        "target": "zip",  // 便携版
+        "target": "zip",
         "arch": [
           "x64"
         ]
       }
     ],
-    "artifactName": "${productName}_${version}_windows_${arch}.${ext}"
+    "artifactName": "${productName}-${version}-win-${arch}.${ext}"
   },
   "nsis": {
     "oneClick": false,
     "perMachine": false,
     "allowToChangeInstallationDirectory": true,
     "deleteAppDataOnUninstall": false,
-    "artifactName": "${productName}_${version}_windows_${arch}_setup.${ext}"
+    "artifactName": "${productName}-${version}-win-${arch}-setup.${ext}"
   },
   "publish": {
-    "provider": "generic",
-    "channel": "latest",
-    "url": "https://github.com/electron-vite/electron-vite-react/releases/download/v0.9.9/"
+    "provider": "github",
+    "owner": "Shadownc",
+    "repo": "nvm-manager"
   }
 }

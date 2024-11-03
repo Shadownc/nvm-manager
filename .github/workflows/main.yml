@@ -12,11 +12,6 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, windows-latest]
-        include:
-          - os: macos-latest
-            platform: mac
-          - os: windows-latest
-            platform: windows
 
     steps:
       - name: Checkout Code
@@ -35,17 +30,21 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Debug Output Release Directory
+        run: |
+          echo "Listing release directory:"
+          ls -R release/
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            release/**/*windows*.exe
-            release/**/*windows*.zip
-            release/**/*windows*.blockmap
-            release/**/*mac*.dmg
-            release/**/*mac*.zip
-            release/**/*mac*.blockmap
+            release/*/*.exe
+            release/*/*.zip
+            release/*/*.blockmap
+            release/*/*.dmg
+          fail_on_unmatched_files: false
           draft: false
           prerelease: false
         env:
