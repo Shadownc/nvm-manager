@@ -85,7 +85,7 @@ async function createWindow() {
       label: 'Github',
       icon: path.join(process.env.VITE_PUBLIC, 'icons', 'github.png'),
       click: () => {
-        shell.openExternal('https://github.com/Shadownc/node-version-switcher'); // 打开 Github 链接
+        shell.openExternal('https://github.com/Shadownc/nvm-manager'); // 打开 Github 链接
       }
     },
     { type: 'separator' },
