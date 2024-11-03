@@ -12,34 +12,35 @@
     "dist"
   ],
   "mac": {
-    "artifactName": "${productName}_${version}.${ext}",
+    "artifactName": "${productName}_${version}_mac_${arch}.${ext}",
     "target": [
       "dmg",
-      "zip" // 便携版
+      "zip"  // 便携版
     ]
   },
   "win": {
     "target": [
       {
-        "target": "nsis", // 安装程序
+        "target": "nsis",
         "arch": [
           "x64"
         ]
       },
       {
-        "target": "zip", // 便携版
+        "target": "zip",  // 便携版
         "arch": [
           "x64"
         ]
       }
     ],
-    "artifactName": "${productName}_${version}.${ext}"
+    "artifactName": "${productName}_${version}_windows_${arch}.${ext}"
   },
   "nsis": {
     "oneClick": false,
     "perMachine": false,
     "allowToChangeInstallationDirectory": true,
-    "deleteAppDataOnUninstall": false
+    "deleteAppDataOnUninstall": false,
+    "artifactName": "${productName}_${version}_windows_${arch}_setup.${ext}"
   },
   "publish": {
     "provider": "generic",
