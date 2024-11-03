@@ -33,15 +33,18 @@ jobs:
       - name: List Release Directory
         run: ls -R release
 
+      - name: Prepare Release Files
+        id: prepare_files
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          FILES=$(ls release/$VERSION/*.exe release/$VERSION/*.zip release/$VERSION/*.blockmap release/$VERSION/mac-arm64/nvm-manager.app 2>/dev/null)
+          echo "files=$FILES" >> $GITHUB_ENV
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: |
-            $(echo release/${GITHUB_REF#refs/tags/v}/nvm-manager_*.exe)
-            $(echo release/${GITHUB_REF#refs/tags/v}/*.zip)
-            $(echo release/${GITHUB_REF#refs/tags/v}/*.blockmap)
-            $(echo release/${GITHUB_REF#refs/tags/v}/mac-arm64/nvm-manager.app)
+          files: ${{ env.files }}
           draft: false
           prerelease: false
         env:
