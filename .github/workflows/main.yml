@@ -11,49 +11,33 @@ jobs:
     
     strategy:
       matrix:
-        os: [macos-latest, windows-latest]
-        
+        os: [macos-latest, windows-latest]  # 如果只需要 Windows 版本
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          
+
       - name: Install Dependencies
         run: npm install
-        
+
       - name: Build Release Files
         run: npm run build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: List Release Directory
-        run: ls -R release
-
-      - name: Prepare Release Files
-        id: prepare_files
-        run: |
-          VERSION=${GITHUB_REF#refs/tags/v}
-          echo "Version: $VERSION"  # 输出版本号，便于调试
-          FILES=$(ls release/$VERSION/*.exe release/$VERSION/*.zip release/$VERSION/*.blockmap release/$VERSION/mac-arm64/nvm-manager.app 2>/dev/null)
-          if [ -z "$FILES" ]; then
-            echo "No files found!"  # 如果没有找到文件，输出提示
-          else
-            echo "Files found: $FILES"  # 输出找到的文件
-          fi
-          echo "files=$FILES" >> $GITHUB_ENV
-
-      - name: Debug Environment Variables
-        run: env  # 输出所有环境变量以供调试
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: ${{ env.files }}
+          files: |
+            release/**/*.exe
+            release/**/*.zip
+            release/**/*.blockmap
           draft: false
           prerelease: false
         env:
