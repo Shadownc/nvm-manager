@@ -1,4 +1,4 @@
-/**
+/** 
  * @see https://www.electron.build/configuration/configuration
  */
 {
@@ -15,13 +15,19 @@
     "artifactName": "${productName}_${version}.${ext}",
     "target": [
       "dmg",
-      "zip"
+      "zip" // 便携版
     ]
   },
   "win": {
     "target": [
       {
-        "target": "nsis",
+        "target": "nsis", // 安装程序
+        "arch": [
+          "x64"
+        ]
+      },
+      {
+        "target": "zip", // 便携版
         "arch": [
           "x64"
         ]
