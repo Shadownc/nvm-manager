@@ -1,6 +1,6 @@
 {
   "name": "nvm-manager",
-  "version": "2.2.0",
+  "version": "0.0.1",
   "main": "dist-electron/main/index.js",
   "description": "Electron Vite React 可视化nvm桌面应用",
   "author": "IMyself <365172043@qq.com>",
