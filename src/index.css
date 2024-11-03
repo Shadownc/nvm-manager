@@ -1,0 +1,12 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* 禁用全局滚动条 */
+  height: 100%;
+  background-color: #1a202c; /* 与 Electron 窗口背景保持一致 */
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
