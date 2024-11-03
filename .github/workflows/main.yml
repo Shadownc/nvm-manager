@@ -29,6 +29,9 @@ jobs:
         run: npm run build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: List Release Directory
+        run: ls -R release
           
       - name: Create Release
         uses: softprops/action-gh-release@v1
