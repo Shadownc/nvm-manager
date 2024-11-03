@@ -38,8 +38,7 @@ const App = () => {
       const response = await window.electronAPI.getInstalledVersions();
       if (response.success) {
         const versionsWithIsCurrent = response.versions.map((version) => ({
-          ...version,
-          isCurrent: false, // 初始设为 false，可以根据当前版本更新此字段
+          ...version
         }));
         setInstalledVersions(versionsWithIsCurrent.sort(compareVersions));
       } else {

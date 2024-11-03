@@ -29,7 +29,7 @@
       {
         "target": "zip",
         "arch": [
-          "x64"
+          "x64_portable"
         ]
       }
     ],
