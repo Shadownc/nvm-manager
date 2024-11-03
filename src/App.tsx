@@ -3,7 +3,7 @@ import './App.css';
 declare global {
   interface Window {
     electronAPI: {
-      getInstalledVersions: () => Promise<{ success: boolean; versions: { version: string; status: string; }[]; message: string }>;
+      getInstalledVersions: () => Promise<{ success: boolean; versions: { version: string; isCurrent: boolean; }[]; message: string }>;
       getAvailableNodeVersions: () => Promise<{ success: boolean; versions: { version: string; npmVersion: string; status: string; }[]; message: string }>;
       installNodeVersion: (version: string) => Promise<{ success: boolean; message: string }>;
       switchNodeVersion: (version: string) => Promise<{ success: boolean; message: string }>;
@@ -37,10 +37,7 @@ const App = () => {
     try {
       const response = await window.electronAPI.getInstalledVersions();
       if (response.success) {
-        const versionsWithIsCurrent = response.versions.map((version) => ({
-          ...version
-        }));
-        setInstalledVersions(versionsWithIsCurrent.sort(compareVersions));
+        setInstalledVersions(response.versions.sort(compareVersions));
       } else {
         showResult(response.message, 'error');
       }

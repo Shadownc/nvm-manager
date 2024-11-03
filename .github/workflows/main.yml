@@ -35,6 +35,18 @@ jobs:
           echo "Listing release directory:"
           ls -R release/
 
+      # 添加重命名Windows zip文件的步骤
+      - name: Rename Windows zip
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: |
+          $zipFile = Get-ChildItem -Path release/*/*.zip | Select-Object -First 1
+          if ($zipFile) {
+            $newName = $zipFile.FullName -replace '\.zip$', '_portable.zip'
+            Rename-Item -Path $zipFile.FullName -NewName $newName
+            echo "Renamed zip file to: $newName"
+          }
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
