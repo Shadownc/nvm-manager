@@ -11,7 +11,7 @@ jobs:
     
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest] # 如果只需要 Windows 版本
+        os: [macos-latest, windows-latest]
         
     steps:
       - name: Checkout Code
