@@ -40,7 +40,6 @@ jobs:
           files: |
             release/${{ github.ref_name }}/nvm-manager_*.exe
             release/${{ github.ref_name }}/*.zip
-            release/${{ github.ref_name }}/*.dmg
             release/${{ github.ref_name }}/*.blockmap
             release/${{ github.ref_name }}/mac-arm64/nvm-manager.app
           draft: false
