@@ -38,11 +38,11 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            release/${{ github.event.ref }}/nvm-manager_*.exe
-            release/${{ github.event.ref }}/*.zip
-            release/${{ github.event.ref }}/*.dmg
-            release/${{ github.event.ref }}/*.blockmap
-            release/${{ github.event.ref }}/mac-arm64/nvm-manager.app
+            release/${{ github.ref_name }}/nvm-manager_*.exe
+            release/${{ github.ref_name }}/*.zip
+            release/${{ github.ref_name }}/*.dmg
+            release/${{ github.ref_name }}/*.blockmap
+            release/${{ github.ref_name }}/mac-arm64/nvm-manager.app
           draft: false
           prerelease: false
         env:
