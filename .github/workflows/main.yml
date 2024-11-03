@@ -39,6 +39,7 @@ jobs:
         with:
           files: |
             release/*portable.zip
+            release/*-win-unpacked/**  # 这里添加便携版的路径
             release/*.exe
           draft: false
           prerelease: false
